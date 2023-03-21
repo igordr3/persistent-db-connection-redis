@@ -1,0 +1,41 @@
+<!-- http://0.0.0.0:8080/frontend-app -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>ChatRoom</title>
+  </head>
+  <body>
+    <h2>MyCoolChat.Com</h2>
+    <h3 id="greeting">Hi!</h3>
+    <input id="name" value="Write your name to join"><button onClick="getName()">Set name</button>
+    <br/><br/>
+    <button onClick="sendMsg()">Join now</button>
+
+    <br/><br/>
+    <div id="joined"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <script>
+      const socket = io.connect("http://0.0.0.0:8080",{
+      cors:{
+          origin:'*',
+          credentials:true
+      }
+      });
+
+      function getName() {
+        var name = document.getElementById("name").value;
+        document.getElementById("greeting").innerHTML = "Hi, " + '<span id="nameset">'  + name + '</span>!';
+        }
+    
+
+      function sendMsg() {
+        var name = document.getElementById("nameset").innerHTML
+        socket.emit("newUser", name);
+        document.getElementById("joined").innerHTML = "Success! You have just joined the chat."
+      }
+    </script>
+  </body>
+</html>
