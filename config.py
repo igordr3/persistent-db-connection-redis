@@ -8,7 +8,7 @@ class Config(object):
     # Parse redis environment variables.
     redis_endpoint_url = "redis-13586.c10.us-east-1-4.ec2.cloud.redislabs.com:13586"
     REDIS_HOST, REDIS_PORT = tuple(redis_endpoint_url.split(":"))
-    REDIS_PASSWORD = "iaoSP4hzu93CUCTkzu0kCSy24G3g5mxB"
+    REDIS_PASSWORD = "XXXXXXXXXXXXXXX"
     SECRET_KEY = os.environ.get("SECRET_KEY", "Optional default value")
     SESSION_TYPE = "redis"
     redis_client = redis.Redis(
